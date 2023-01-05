@@ -137,14 +137,14 @@ class GridSearchReduction(Transformer):
         dataset_new = dataset.copy()
         dataset_new.labels = self.model.predict(X_df).reshape(-1, 1)
 
-        if isinstance(self.model.moment, red.ClassificationMoment):
-            fav = int(dataset.favorable_label)
-            try:
-                # Probability of favorable label
-                scores = self.model.predict_proba(X_df)[:, fav]
-                dataset_new.scores = scores.reshape(-1, 1)
-            except (AttributeError, NotImplementedError):
-                warning("dataset.scores not updated, underlying model does not "
-                        "support predict_proba")
+#         if isinstance(self.model.moment, red.ClassificationMoment):
+#             fav = int(dataset.favorable_label)
+#             try:
+#                 # Probability of favorable label
+#                 scores = self.model.predict_proba(X_df)[:, fav]
+#                 dataset_new.scores = scores.reshape(-1, 1)
+#             except (AttributeError, NotImplementedError):
+#                 warning("dataset.scores not updated, underlying model does not "
+#                         "support predict_proba")
 
         return dataset_new
